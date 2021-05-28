@@ -1,3 +1,4 @@
+import sys, os
 import pyttsx3
 import discord
 from discord import Intents
@@ -9,10 +10,14 @@ from discord.utils import get
 intents = Intents.all()
 bot = commands.Bot(intents = intents, command_prefix = '^')
 engine = pyttsx3.init()
-token = 'ODMwMjQyMDc4Mjk4MjEwMzc1.YHD1MA.JoKFmispQ48w01ZN5xzA0DZxOi0'
 loop = asyncio.get_event_loop()
 print(loop)
 self = discord.User
+
+if 'TOKEN' not in os.environ:
+    print('No bot token (TOKEN) in the list of environment variables')
+    exit()
+token = os.environ['TOKEN']
 
 @bot.event
 async def on_ready():
